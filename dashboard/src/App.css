@@ -1,0 +1,243 @@
+/* Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html, #root {
+  height: 100%;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  background: #f4f6f9;
+  color: #333;
+}
+
+/* Page Layout */
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Top Header */
+.header {
+  background: #1e88e5;
+  color: white;
+  padding: 12px 20px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Main Content Layout */
+.main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Left (Map) */
+.left {
+  flex: 2;
+  padding: 10px;
+}
+
+.map-container {
+  width: 100%;
+  height: 100%;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Right (Alert List) */
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-left: 1px solid #ddd;
+  padding: 12px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.right h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #1e88e5;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #302f2f;
+}
+
+.filters label {
+  font-weight: 600;
+}
+
+#statusFilter {
+  padding: 6px 12px;
+  border: 1px solid #105795;
+  border-radius: 6px;
+  background-color: white;
+  font-size: 14px;
+  color: #0c3860;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(13, 54, 90, 0.3);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#statusFilter:hover {
+  border-color: #1565c0;
+  box-shadow: 0 2px 2px rgba(21, 101, 192, 0.5);
+}
+
+#statusFilter:focus {
+  outline: none;
+  border-color: #0d47a1;
+  box-shadow: 0 0 6px #0d47a1;
+  background-color: #f0f7ff;
+}
+
+/* Alert List */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.alert-card {
+  border: 1px solid #e0e0e0;
+  padding: 12px;
+  border-radius: 10px;
+  background: #fafafa;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.alert-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.alert-card.new {
+  border-left: 5px solid #e53935;
+  animation: pulse 1s ease;
+}
+
+.alert-card.resolved {
+  border-left: 5px solid #2e7d32;
+  opacity: 0.9;
+}
+
+/* Card Head */
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.card-head b {
+  font-size: 15px;
+  color: #333;
+}
+
+.card-head .time {
+  font-size: 12px;
+  color: #888;
+}
+
+/* Message */
+.msg {
+  margin: 6px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.coords {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.actions button {
+  padding: 6px 10px;
+  font-size: 13px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.actions button:first-child {
+  background: #1976d2;
+  color: white;
+}
+
+/* Highlight newly received alert */
+.highlight-new {
+  animation: highlightAlert 2s ease;
+}
+
+@keyframes highlightAlert {
+  0% { background-color: #ffebee; }
+  50% { background-color: #ffcdd2; }
+  100% { background-color: #ffebee; }
+}
+
+
+.actions .resolve {
+  background: #2e7d32;
+  color: white;
+}
+
+.actions button:hover {
+  opacity: 0.9;
+}
+
+/* Scroll to Top Button */
+.scroll-top {
+  position: sticky;
+  bottom: 10px;
+  right: 10px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #1e88e5;
+  color: white;
+  cursor: pointer;
+}
+
+/* Pulse Animation for New Alerts */
+@keyframes pulse {
+  0% { transform: scale(1); background-color: #ffcccc; }
+  50% { transform: scale(1.05); background-color: #ffaaaa; }
+  100% { transform: scale(1); background-color: #ffcccc; }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .main {
+    flex-direction: column;
+  }
+  .left, .right {
+    flex: unset;
+    width: 100%;
+    height: 50%;
+  }
+}
